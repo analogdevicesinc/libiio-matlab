@@ -182,7 +182,18 @@ classdef iio_sys_obj_matlab
     end
     
     methods (Access = public)
-        %% Common functions
+        %% Helper functions
+		function ret = getInChannel(obj, channelName)
+            % Returns the index of a named input channel
+			ret = obj.in_ch_no + find(strcmp(obj.iio_dev_cfg.in_ch_names, channelName));
+		end
+		
+		function ret = getOutChannel(obj, channelName)
+            % Returns the index of a named output channel
+			ret = obj.out_ch_no + find(strcmp(obj.iio_dev_cfg.out_ch_names, channelName));
+		end
+		
+		%% Common functions
         function ret = setupImpl(obj)
             % Implement tasks that need to be performed only once.
             
