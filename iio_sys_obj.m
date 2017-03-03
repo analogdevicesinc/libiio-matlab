@@ -343,15 +343,15 @@ classdef iio_sys_obj < matlab.System & matlab.system.mixin.Propagates ...
             cfg_ch_no = 0;
             config = getObjConfig(obj);
             if(~isempty(config))
-                cgf_ch_no = length(config.cfg_ch);
+                cfg_ch_no = length(config.cfg_ch);
             end
             
-            if(data_ch_no + cgf_ch_no ~= 0)
-                varargout = cell(1, data_ch_no + cgf_ch_no);
+            if(data_ch_no + cfg_ch_no ~= 0)
+                varargout = cell(1, data_ch_no + cfg_ch_no);
                 for i = 1 : data_ch_no
                     varargout{i} = sprintf('DATA_IN%d', i);
                 end
-                for i = data_ch_no + 1 : data_ch_no + cgf_ch_no
+                for i = data_ch_no + 1 : data_ch_no + cfg_ch_no
                     varargout{i} = config.cfg_ch(i - data_ch_no).port_name;
                 end
             else
